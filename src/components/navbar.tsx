@@ -1,23 +1,30 @@
 import { appIcon } from '@core/icons';
 import React, { ReactNode } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
-import Row from './row';
 
 type NavbarProps = {
   showLeading: boolean;
   showTrailing: boolean;
   renderLeading?: ReactNode;
   renderTrailing?: ReactNode;
+  onLeadingPressed?: () => void;
+  onTrailingPressed?: () => void;
 };
 
-const Navbar = ({ showLeading = true, showTrailing = false, ...props }) => {
+const Navbar = ({
+  showLeading = true,
+  showTrailing = false,
+  onLeadingPressed,
+  onTrailingPressed,
+  ...props
+}: NavbarProps) => {
   const renderLeading = () => {
     if (showLeading && props.renderLeading) {
       return props.renderLeading;
     }
     if (showLeading) {
       return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onLeadingPressed}>
           <Image source={appIcon.arrowLeft} />
         </TouchableOpacity>
       );
@@ -32,7 +39,7 @@ const Navbar = ({ showLeading = true, showTrailing = false, ...props }) => {
     }
     if (showTrailing) {
       return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onTrailingPressed}>
           <Image source={appIcon.arrowLeft} />
         </TouchableOpacity>
       );
@@ -51,7 +58,7 @@ const Navbar = ({ showLeading = true, showTrailing = false, ...props }) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
+    height: 100,
     paddingHorizontal: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
