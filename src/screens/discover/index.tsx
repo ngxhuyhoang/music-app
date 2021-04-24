@@ -1,13 +1,14 @@
 import Navbar from '@components/navbar';
 import Spacer from '@components/spacer';
 import { appIcon } from '@core/icons';
-import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import React, { useCallback, useMemo, useRef } from 'react';
+import { useNavigation } from '@react-navigation/core';
+import React from 'react';
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import useStyle from './styles';
 
 const Discover = () => {
   const styles = useStyle();
+  const navigation = useNavigation();
 
   const renderLeading = (
     <TouchableOpacity
@@ -112,7 +113,10 @@ const Discover = () => {
           }}
         />
       </View>
-      <View
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Player');
+        }}
         style={{
           height: 70,
           flexDirection: 'row',
@@ -134,7 +138,7 @@ const Discover = () => {
         <TouchableOpacity>
           <Image source={appIcon.pause} style={{ tintColor: '#fff' }} />
         </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
