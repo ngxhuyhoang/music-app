@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 import useStyles from './styles';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 const Player = () => {
   const styles = useStyles();
@@ -11,6 +12,15 @@ const Player = () => {
         <Image
           source={{ uri: 'https://picsum.photos/1080/1080' }}
           style={{ width: 240, height: 240, borderRadius: 120 }}
+        />
+        <AnimatedCircularProgress
+          size={120}
+          width={15}
+          fill={50}
+          tintColor="#00e0ff"
+          onAnimationComplete={() => console.log('onAnimationComplete')}
+          backgroundColor="#3d5875"
+          tintTransparency={true}
         />
         <Text
           style={{
